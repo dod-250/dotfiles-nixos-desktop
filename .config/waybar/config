@@ -1,0 +1,197 @@
+// ──────────────────────────────────────────────────────────────────────────
+//  dod
+//  Waybar config
+//  vers. 1.0.1
+// ──────────────────────────────────────────────────────────────────────────
+
+{
+  "layer": "top",
+  "position": "top",
+  "output": ["DP-3"],
+  "margin-top": 8,
+  "margin-bottom": -8,
+  "width": 2520,
+  "height": 34,
+
+  // ── Modules Layout ───────────────────────────────────────────────
+  "modules-left": [
+    "cpu_usage",
+    "custom/cpuinfo",
+    "memory",
+    "hyprland/window"
+  ],
+
+  "modules-center": [
+    "hyprland/workspaces"
+  ],
+
+  "modules-right": [
+    "custom/nextcloud",
+    "bluetooth",
+    "network",
+    "custom/swaync",
+    "custom/volume",
+    "clock",
+    "custom/power"
+  ],
+
+  // ── Clock ────────────────────────────────────────────────────────
+  "clock": {
+    "tooltip-format": "{calendar}",
+    "format-alt": "[   {:%a, %d %b %Y} ]",
+    "format": "[   {:%I:%M %p} ]"
+  },
+
+  // ── Network ──────────────────────────────────────────────────────
+  "network": {
+    "format-wifi": "{icon}",
+    "format-icons": ["[ 󰤯 ]", "[ 󰤟 ]", "[ 󰤢 ]", "[ 󰤥 ]", "[ 󰤨 ]"],
+    "format-ethernet": "[ 󰀂 ]",
+    "format-alt": "[ 󱛇 ]",
+    "format-disconnected": "[ 󰖪 ]",
+    "tooltip-format-wifi": "{icon} {essid}\n⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
+    "tooltip-format-ethernet": "󰀂  {ifname}\n⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
+    "tooltip-format-disconnected": "Disconnected",
+    "on-click": "nm-connection-editor",
+    "interval": 5,
+    "nospacing": 1
+  },
+
+  // ── Keyboard ─────────────────────────────────────────────────────
+  "keyboard-state": {
+    "numlock": true,
+    "capslock": true,
+    "format": "[  {layout} ]"
+  },
+
+  // ── Bluetooth ────────────────────────────────────────────────────
+  "bluetooth": {
+    "format": "{icon}",
+    "format-icons": {
+      "enabled": "[  ]",
+      "disabled": "[ 󰂲 ]"
+    },
+    "on-click": "~/.config/waybar/scripts/bluetooth-toggle.sh",
+    "tooltip-format": "Bluetooth is {status}",
+    "interval": 5
+  },
+
+  // ── Workspaces ──────────────────────────────────
+  "hyprland/workspaces": {
+    "format": "[ {name} ]",
+    "format-icons": {
+      "active": "󰻃",
+      "default": ""
+			},
+      "persistent-workspaces": {
+        "DP-3": [1, 2, 3,]
+     }
+   },
+
+  // ── Volume ───────────────────────────────────────────────────────
+  "custom/volume": {
+    "exec": "~/.config/waybar/scripts/volume.sh",
+    "return-type": "json",
+    "interval": 1,
+    "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+    "on-scroll-up": "wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%+",
+    "on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
+  },
+
+  // ── Power ────────────────────────────────────────────────────────
+  "custom/power": {
+    "format": "[ 󰤆 ]",
+    "tooltip": true,
+    "tooltip-format": "Power Menu",
+    "on-click": "~/.config/waybar/scripts/powermenu.sh"
+  },
+
+  // ── Tray ─────────────────────────────────────────────────────────
+  "tray": {
+        "icon-size": 16,
+        "rotate": 0,
+        "spacing": 5,
+  },
+  
+  // ── Swaync ───────────────────────────────────────────────────────
+  "custom/swaync": {
+    "tooltip": true,
+    "format": "{icon}",
+    "format-icons": {
+      "notification": "[ <span foreground='red'><sup></sup></span> ]",
+      "none": "[  ]",
+      "dnd-notification": "[ <span foreground='red'><sup></sup></span> ]",
+      "dnd-none": "",
+      "inhibited-notification": "[ <span foreground='red'><sup></sup></span> ]",
+      "inhibited-none": "[  ]",
+      "dnd-inhibited-notification": "[ <span foreground='red'><sup></sup></span> ]",
+      "dnd-inhibited-none": "[  ]"
+   },
+     "return-type": "json",
+     "exec-if": "which swaync-client",
+     "exec": "swaync-client -swb",
+     "on-click": "sleep 0.1 && swaync-client -t -sw",
+     "on-click-right": "swaync-client -d -sw",
+     "escape": true
+  },
+
+  // ── cpu ──────────────────────────────────────────────────────────
+  "custom/cpuinfo": {
+    "exec": "~/.config/waybar/scripts/cpuinfo.sh",
+    "return-type": "json",
+    "format": "[ {} ]",
+    "rotate": 0,
+    "interval": 5, // once every 5 seconds
+    "tooltip": true,
+    "max-length": 1000
+  },
+
+  "cpu_usage": {
+    "interval": 10,
+    "format": "[ 󰍛 {usage}% ]",
+    "rotate": 0
+  },
+
+  // ── memory ───────────────────────────────────────────────────────
+  "memory": {
+    "states": {
+      "c": 90, // critical
+      "h": 60, // high
+      "m": 30, // medium
+    },
+    "interval": 30,
+    "format": "[ 󰾆 {used}GB ]",
+    "rotate": 0,
+    "format-m": "[ 󰾅 {used}GB ]",
+    "format-h": "[ 󰓅 {used}GB ]",
+    "format-c": "[  {used}GB ]",
+    "format-alt": "[ 󰾆 {percentage}% ]",
+    "max-length": 10,
+    "tooltip": true,
+    "tooltip-format": "[ 󰾆 {percentage}%\n {used:0.1f}GB/{total:0.1f}GB ]"
+  },
+
+  // ── window ───────────────────────────────────────────────────────
+  "hyprland/window": {
+    "format": "[  {} ]",
+    "rewrite": {
+      "(.*) - Mozilla Firefox": "󰈹 $1",
+    }
+  },
+
+  // ── Nextcloud ────────────────────────────────────────────────────
+  "custom/nextcloud": {
+    "exec": "~/.config/waybar/scripts/nextcloud.sh",
+    "return-type": "json",
+    "interval": 10,
+    "tooltip": true,
+    "on-click": "nextcloud --showsettings"
+  },
+
+  // ── Spacer ───────────────────────────────────────────────────────
+  "custom/squares": {
+    "format": " ",
+    "tooltip": false
+  }
+}
+
