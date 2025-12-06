@@ -157,7 +157,6 @@
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
     git
-    plexamp
     flatpak
     lm_sensors
     jq
@@ -165,7 +164,6 @@
     util-linux
     gawk
     gimp3
-    libsForQt5.ark
     proton-pass
     protonvpn-gui
     finamp
@@ -245,7 +243,7 @@
     powerManagement.finegrained = false;
 
     # Use the NVidia open source kernel module
-    open = true;
+    open = false;
 
     # Enable the Nvidia settings menu
     nvidiaSettings = true;
