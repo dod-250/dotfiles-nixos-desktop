@@ -79,6 +79,7 @@
 
     targets = {
       qt.enable = false;
+      swaync.enable = false;
     };
     
     fonts = {
