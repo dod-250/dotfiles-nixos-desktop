@@ -5,6 +5,7 @@
     ./modules/starship.nix
     ./modules/spicetify.nix
     ./modules/nixvim.nix
+    ./modules/swaync.nix
     ./hyprland/hyprland-pkgs.nix
     ./hyprland/hyprland-conf.nix
   ];
@@ -28,6 +29,7 @@
   home.packages = with pkgs; [
     sbctl
     cmatrix
+    _0xproto
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -63,6 +65,33 @@
   #
 
   nixpkgs.config.allowUnfree = true;
+
+  stylix = {
+    enable = true;
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-macchiato.yaml";
+
+    polarity = "dark";
+
+    override = {
+      base0D = "f5a97f";
+      base08 = "f5a97f";
+    };
+
+    targets = {
+      qt.enable = false;
+    };
+    
+    fonts = {
+      monospace = {
+        package = pkgs._0xproto;
+        name = "0xProto Nerd Font";
+      };
+      sansSerif = {
+        package = pkgs._0xproto;
+        name = "0xProto Nerd Font";
+      };
+    };
+  };
 
   home.sessionVariables = {
     # EDITOR = "emacs";

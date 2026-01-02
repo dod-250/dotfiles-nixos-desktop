@@ -6,6 +6,11 @@
     home-manager.url = "github:nix-community/home-manager/release-25.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     
+    stylix = {
+      url = "github:danth/stylix/release-25.11";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    
     # Lanzaboote for Secure Boot
     lanzaboote = {
       url = "github:nix-community/lanzaboote";
@@ -24,7 +29,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, lanzaboote, spicetify-nix, nixvim, ... }:
+  outputs = { self, nixpkgs, home-manager, lanzaboote, spicetify-nix, nixvim, stylix, ... }:
   let
     lib = nixpkgs.lib;
     system = "x86_64-linux";
@@ -50,6 +55,7 @@
         modules = [ 
           ./home.nix
           nixvim.homeModules.nixvim
+          stylix.homeModules.stylix
           # Import du module spicetify-nix
           spicetify-nix.homeManagerModules.default
         ];

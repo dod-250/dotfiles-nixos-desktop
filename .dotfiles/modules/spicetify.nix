@@ -8,8 +8,8 @@ in
   # Configuration spicetify
   programs.spicetify = {
     enable = true;
-    theme = spicePkgs.themes.catppuccin;
-    colorScheme = "mocha";
+    # theme = spicePkgs.themes.catppuccin;
+    # colorScheme = "macchiato";
     
     enabledExtensions = with spicePkgs.extensions; [
       adblock

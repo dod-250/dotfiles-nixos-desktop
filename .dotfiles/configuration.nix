@@ -167,13 +167,9 @@
     proton-pass
     protonvpn-gui
     finamp
-    tailscale
-    trayscale
-    ktailctl
     nextcloud-client
     inotify-tools
     isoimagewriter
-    catppuccin-kvantum
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

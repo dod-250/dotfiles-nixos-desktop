@@ -22,6 +22,7 @@
     kdePackages.gwenview            # Photo viewer
     gvfs         # Virtual Filesystem support library
     samba
+    unzip
 
     # === Launchers & Menus ===
     rofi      # Application launcher
@@ -30,7 +31,6 @@
     waybar             # Status bar
 
     # === Notifications ===
-    swaynotificationcenter # Notification center
     libnotify          # Notification library
 
     # === Screenshot & Screen recording ===
@@ -64,10 +64,6 @@
 
     # === Bluetooth ===
     blueman            # Bluetooth manager
-
-    # === Theme & Appearance ===
-    nwg-look  # GTK heme manager
-    kdePackages.qt6ct  # Qt6 theme manager
 
     # === Fonts ===
     nerd-fonts._0xproto
