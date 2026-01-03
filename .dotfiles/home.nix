@@ -30,6 +30,7 @@
     sbctl
     cmatrix
     _0xproto
+    clock-rs
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -66,6 +67,8 @@
 
   nixpkgs.config.allowUnfree = true;
 
+  # Stylix
+
   stylix = {
     enable = true;
     base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-macchiato.yaml";
@@ -90,6 +93,33 @@
       sansSerif = {
         package = pkgs._0xproto;
         name = "0xProto Nerd Font";
+      };
+    };
+  };
+
+  # Clock-rs
+
+  programs.clock-rs = {
+    enable = true;
+
+    settings = {
+      general = {
+        color = "green";
+        interval = 250;
+        blink = true;
+        bold = true;
+      };
+
+      position = {
+        horizontal = "center";
+        vertical = "center";
+      };
+
+      date = {
+        fmt = "%A, %B %d, %Y";
+        use_12h = false;
+        utc = true;
+        hide_seconds = true;
       };
     };
   };

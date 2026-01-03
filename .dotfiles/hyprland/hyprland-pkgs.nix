@@ -54,6 +54,7 @@
     # === Screen ===
 
     brightnessctl      # Read and control device brightness
+    grim
 
     # === System monitoring ===
     btop               # Modern system monitor
@@ -65,11 +66,16 @@
     # === Bluetooth ===
     blueman            # Bluetooth manager
 
+    # === Customization ===
+
+    kdePackages.qt6ct
+
     # === Fonts ===
     nerd-fonts._0xproto
 
     # === Productivity ===
     onlyoffice-desktopeditors
     joplin-desktop
+
   ];
 }

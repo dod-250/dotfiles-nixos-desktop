@@ -69,7 +69,6 @@
   services.xserver.enable = true;
 
   # Enable the KDE Plasma Desktop Environment.
-  services.displayManager.sddm.enable = true;
   services.desktopManager.plasma6.enable = true;
 
   # Thunar
@@ -139,6 +138,13 @@
     config.common.default = "*";
   };
 
+  # SDDM
+  services.displayManager.sddm = {
+    enable = true;
+    wayland.enable = true;
+    theme = "catppuccin-macchiato-peach";
+  };
+
   # tailscale
   services.tailscale.enable = true;
 
@@ -170,6 +176,16 @@
     nextcloud-client
     inotify-tools
     isoimagewriter
+    _0xproto
+
+    (pkgs.catppuccin-sddm.override {
+      flavor = "macchiato";
+      accent = "peach";
+      font = "0xProto Nerd Font";
+      fontSize = "9";
+      background = "${./wallpapers/sddm-background.jpg}";
+      loginBackground = true;
+    })
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

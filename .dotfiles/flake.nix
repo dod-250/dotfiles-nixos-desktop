@@ -10,6 +10,11 @@
       url = "github:danth/stylix/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    catppuccin-sddm = {
+      url = "github:catppuccin/sddm";
+      flake = false;
+    };
     
     # Lanzaboote for Secure Boot
     lanzaboote = {
