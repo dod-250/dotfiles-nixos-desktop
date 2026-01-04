@@ -83,6 +83,7 @@
     targets = {
       qt.enable = false;
       swaync.enable = false;
+      spicetify.enable = false;
     };
     
     fonts = {
