@@ -146,7 +146,7 @@
   };
 
   # tailscale
-  services.tailscale.enable = true;
+  services.tailscale.enable = false;
 
   # flatpak
   services.flatpak.enable = true;
