@@ -59,7 +59,7 @@
       # === Input Configuration ===
       input = {
         kb_layout = "us";
-        kb_variant = "";
+        kb_variant = "intl";
         kb_model = "";
         kb_options = "";
         kb_rules = "";
@@ -326,8 +326,9 @@
         "$mainMod, S, togglespecialworkspace, magic"
         "$mainMod SHIFT, S, movetoworkspace, special:magic"
 
-        # System controls (ajuste selon tes besoins)
+        # System controls
         "$mainMod, L, exec, hyprlock"
+        "$mainMod, SPACE, exec, hyprctl switchxkblayout at-translated-set-2-keyboard next"
       ];
 
       # === Mouse Bindings ===
