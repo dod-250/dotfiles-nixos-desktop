@@ -5,7 +5,8 @@
     ./modules/starship.nix
     ./modules/spicetify.nix
     ./modules/nixvim.nix
-    ./modules/swaync.nix
+    # ./modules/swaync.nix
+    ./modules/quickshell.nix
     ./hyprland/hyprland-pkgs.nix
     ./hyprland/hyprland-conf.nix
   ];
@@ -31,6 +32,9 @@
     cmatrix
     _0xproto
     clock-rs
+    dnsutils
+    calcurse
+    easyeffects
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -123,6 +127,27 @@
         hide_seconds = true;
       };
     };
+  };
+
+  gtk = {
+      enable = true;
+      iconTheme = {
+          package = pkgs.colloid-icon-theme.override {
+              colorVariants = [ "green" ];
+          };
+          name = "Colloid-Green-Dark";
+      };
+  };
+
+  qt = {
+      enable = true;
+      platformTheme.name = "gtk";
+  };
+
+  # Lancer EasyEffects automatiquement au login
+  services.easyeffects = {
+    enable = true;
+    preset = ""; # laisse vide pour le preset par défaut
   };
 
   home.sessionVariables = {

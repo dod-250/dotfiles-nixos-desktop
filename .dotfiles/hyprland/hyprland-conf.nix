@@ -34,13 +34,14 @@
 
       # === Autostart Applications ===
       exec-once = [
-        "waybar"
+        # "waybar"
         "swaynotificationcenter"
         "hyprpaper"
         "hypridle"
         "nm-applet"
         "blueman-applet"
         "cliphist daemon"
+        "qs -p ~/.config/quickshell"
       ];
 
       # === Environment Variables ===
