@@ -15,6 +15,7 @@ ShellRoot {
     property list<string> wallpapers: []
     property int unreadCount: 0
     property bool sysPopupVisible: false
+    property bool networkPopupVisible: false
 
     // ── Processus globaux ─────────────────────────────────────────────
     Process {
@@ -93,5 +94,9 @@ ShellRoot {
         id: sysPopup
         visible: sysPopupVisible
         onCloseRequested: sysPopupVisible = false
+    }
+    NetworkPopup {
+        visible: networkPopupVisible
+        onCloseRequested: networkPopupVisible = false
     }
 }

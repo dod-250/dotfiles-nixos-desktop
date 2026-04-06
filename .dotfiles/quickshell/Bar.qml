@@ -259,11 +259,19 @@ PanelWindow {
             anchors.verticalCenter: parent.verticalCenter
             spacing: 10
 
-            /// CPU
-            RowLayout {
-                spacing: 3
-                Text { text: "󰍛"; font.pixelSize: 13; font.family: Colors.nerdFont; color: Colors.peach }
-                Text { id: cpuTemp; text: "—"; font.pixelSize: 11; color: Colors.subtext0 }
+            // CPU
+            Item {
+                implicitWidth: cpuRow.implicitWidth
+                implicitHeight: cpuRow.implicitHeight
+
+                RowLayout {
+                    id: cpuRow
+                    anchors.fill: parent
+                    spacing: 3
+                    Text { text: "󰍛"; font.pixelSize: 13; font.family: Colors.nerdFont; color: Colors.peach }
+                    Text { id: cpuTemp; text: "—"; font.pixelSize: 11; color: Colors.subtext0 }
+                }
+
                 MouseArea {
                     anchors.fill: parent
                     cursorShape: Qt.PointingHandCursor
@@ -272,10 +280,18 @@ PanelWindow {
             }
 
             // RAM
-            RowLayout {
-                spacing: 3
-                Text { text: ""; font.pixelSize: 13; font.family: Colors.nerdFont; color: Colors.green }
-                Text { id: ramUsage; text: "—"; font.pixelSize: 11; color: Colors.subtext0 }
+            Item {
+                implicitWidth: ramRow.implicitWidth
+                implicitHeight: ramRow.implicitHeight
+
+                RowLayout {
+                    id: ramRow
+                    anchors.fill: parent
+                    spacing: 3
+                    Text { text: ""; font.pixelSize: 13; font.family: Colors.nerdFont; color: Colors.green }
+                    Text { id: ramUsage; text: "—"; font.pixelSize: 11; color: Colors.subtext0 }
+                }
+
                 MouseArea {
                     anchors.fill: parent
                     cursorShape: Qt.PointingHandCursor
@@ -285,10 +301,27 @@ PanelWindow {
 
             Rectangle { width: 1; height: 18; color: Colors.surface1 }
 
+            // Ethernet
+            Text {
+                text: "󰈀"; font.pixelSize: 14; font.family: Colors.nerdFont; color: Colors.blue
+                Behavior on color { ColorAnimation { duration: 300 } }
+                MouseArea {
+                    anchors.fill: parent; cursorShape: Qt.PointingHandCursor
+                    onClicked: root.networkPopupVisible = !root.networkPopupVisible
+                }
+            }
+
             // Bluetooth
             Text {
                 id: btIcon; text: "󰂲"; font.pixelSize: 14; font.family: Colors.nerdFont; color: Colors.overlay0
                 Behavior on color { ColorAnimation { duration: 300 } }
+                MouseArea {
+                    anchors.fill: parent; cursorShape: Qt.PointingHandCursor
+                    onClicked: {
+                        if (root.networkPopup) root.networkPopup.activeTab = 1
+                        root.networkPopupVisible = !root.networkPopupVisible
+                    }
+                }
             }
 
             Rectangle { width: 1; height: 18; color: Colors.surface1 }

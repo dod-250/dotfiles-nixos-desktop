@@ -226,6 +226,21 @@ PanelWindow {
                         border.width: 1
                         Behavior on border.color { ColorAnimation { duration: 300 } }
 
+                        // Barre de progression verticale
+                        Rectangle {
+                            anchors.bottom: parent.bottom
+                            anchors.left: parent.left
+                            anchors.right: parent.right
+                            anchors.margins: 2
+                            anchors.bottomMargin: 2
+                            height: Math.max(2, (parent.height - 4) * (root.coreUsages[index] / 100))
+                            radius: 4
+                            color: root.coreColor(root.coreUsages[index])
+                            opacity: 0.25
+                            Behavior on height { NumberAnimation { duration: 500; easing.type: Easing.OutCubic } }
+                            Behavior on color  { ColorAnimation  { duration: 300 } }
+                        }
+
                         ColumnLayout {
                             anchors.centerIn: parent
                             spacing: 2

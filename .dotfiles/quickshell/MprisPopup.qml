@@ -210,8 +210,8 @@ PanelWindow {
         implicitHeight: mainCol.implicitHeight + 32
         radius: 14
         color:  col.base
-        border.color: col.surface0
-        border.width: 1
+        border.color: col.peach
+        border.width: 2
 
         opacity: root.visible ? 1.0 : 0.0
         Behavior on opacity {
