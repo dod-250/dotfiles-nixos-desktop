@@ -18,7 +18,7 @@
     starship           # Prompt
 
     # ===  Files===
-    xfce.mousepad           # Text editor
+    mousepad           # Text editor
     kdePackages.gwenview            # Photo viewer
     gvfs         # Virtual Filesystem support library
     samba
@@ -50,6 +50,7 @@
     wireplumber        # Modular session / policy manager for PipeWire
     playerctl          # Media player controller
     pulseaudio
+    jellyfin-desktop
 
     # === Screen ===
 

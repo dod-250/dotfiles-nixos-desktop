@@ -33,6 +33,9 @@
   users.defaultUserShell = pkgs.fish;
   programs.fish.enable = true;
 
+  #GPU boot
+  boot.kernelParams = [ "nvidia-drm.modeset=1" "nvidia-drm.fbdev=1" ];
+
   # Use latest kernel.
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
@@ -77,7 +80,7 @@
   services.gvfs.enable = true; # Mount, trash, and other functionalities
   services.tumbler.enable = true; # Thumbnail support for images
 
-  programs.thunar.plugins = with pkgs.xfce; [
+  programs.thunar.plugins = with pkgs; [
     thunar-archive-plugin
     thunar-volman
   ];
@@ -141,7 +144,7 @@
   # SDDM
   services.displayManager.sddm = {
     enable = true;
-    wayland.enable = true;
+    wayland.enable = false;
     theme = "catppuccin-macchiato-peach";
   };
 
@@ -171,11 +174,10 @@
     gawk
     gimp3
     proton-pass
-    protonvpn-gui
+    proton-vpn
     finamp
     nextcloud-client
     inotify-tools
-    isoimagewriter
     _0xproto
 
     (pkgs.catppuccin-sddm.override {

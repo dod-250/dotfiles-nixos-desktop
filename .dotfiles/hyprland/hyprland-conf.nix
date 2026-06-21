@@ -7,6 +7,7 @@
 {
   wayland.windowManager.hyprland = {
     enable = true;
+    configType = "hyprlang"; # Garder hyprlang (Lua devient défaut en 26.05+)
     settings = {
       
       # === Monitors Configuration ===
@@ -138,7 +139,6 @@
 
       # === Layouts ===
       dwindle = {
-        pseudotile = true;
         preserve_split = true;
         smart_split = false;
         smart_resizing = true;
@@ -152,7 +152,6 @@
       master = {
         new_on_top = false;
         orientation = "left";
-        inherit_fullscreen = true;
         smart_resizing = true;
         drop_at_cursor = true;
       };
@@ -209,7 +208,6 @@
         mouse_move_focuses_monitor = true;
         allow_session_lock_restore = false;
         close_special_on_empty = true;
-        new_window_takes_over_fullscreen = 0;
       };
 
       # === Binds Configuration ===
@@ -232,26 +230,29 @@
 
       # === Window Rules ===
       windowrule = [
-      ];
+        # Désactiver les ombres globalement
+        "no_shadow on, match:class .*"
 
-      windowrulev2 = [
-        "noshadow,class:.*"
+        # Empêcher les fenêtres de se maximiser
+        "suppress_event maximize, match:class .*"
 
-        "suppressevent maximize, class:.*"
-        "float,class:^(kitty)$,title:^(kitty)$"
-        "center,class:^(kitty)$,title:^(kitty)$"
-        "size 800 600,class:^(kitty)$,title:^(kitty)$"
-        
-        "idleinhibit focus,class:^(mpv)$"
-        "idleinhibit focus,class:^(firefox)$"
-        "idleinhibit fullscreen,class:^(firefox)$"
-        
-        "pin,class:^(showmethekey-gtk)$"
-        "float,class:^(showmethekey-gtk)$"
-        "noborder,class:^(showmethekey-gtk)$"
-        "nofocus,class:^(showmethekey-gtk)$"
-        "noblur,class:^(showmethekey-gtk)$"
-        "noshadow,class:^(showmethekey-gtk)$"
+        # Kitty flottant centré
+        "float on, match:class ^(kitty)$, match:title ^(kitty)$"
+        "center on, match:class ^(kitty)$, match:title ^(kitty)$"
+        "size 800 600, match:class ^(kitty)$, match:title ^(kitty)$"
+
+        # Idle inhibit
+        "idle_inhibit focus, match:class ^(mpv)$"
+        "idle_inhibit focus, match:class ^(firefox)$"
+        "idle_inhibit fullscreen, match:class ^(firefox)$"
+
+        # showmethekey-gtk : fenêtre overlay transparente
+        "pin on, match:class ^(showmethekey-gtk)$"
+        "float on, match:class ^(showmethekey-gtk)$"
+        "border_size 0, match:class ^(showmethekey-gtk)$"
+        "no_focus on, match:class ^(showmethekey-gtk)$"
+        "no_blur on, match:class ^(showmethekey-gtk)$"
+        "no_shadow on, match:class ^(showmethekey-gtk)$"
       ];
 
       layerrule = [
@@ -284,7 +285,7 @@
         "$mainMod, V, togglefloating"
         "$mainMod, R, exec, $menu"
         "$mainMod, P, pseudo" # dwindle
-        "$mainMod, J, togglesplit" # dwindle
+        "$mainMod, J, layoutmsg, togglesplit" # dwindle
         "$mainMod, F, fullscreen"
         "$mainMod, ESCAPE, exec, wlogout"
         ", PRINT, exec, hyprshot -m output"
