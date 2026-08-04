@@ -71,8 +71,8 @@
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
-  # Enable the KDE Plasma Desktop Environment.
-  services.desktopManager.plasma6.enable = true;
+  # Enable the GNOME Desktop Environment.
+  services.desktopManager.gnome.enable = true;
 
   # Thunar
   programs.thunar.enable = true;
@@ -138,15 +138,14 @@
       xdg-desktop-portal-hyprland
       xdg-desktop-portal-gtk
     ];
-    config.common.default = "*";
+    config = {
+      common.default = [ "gtk" ];
+      hyprland.default = [ "hyprland" "gtk" ];
+    };
   };
 
-  # SDDM
-  services.displayManager.sddm = {
-    enable = true;
-    wayland.enable = false;
-    theme = "catppuccin-macchiato-peach";
-  };
+  # GDM
+  services.displayManager.gdm.enable = true;
 
   # tailscale
   services.tailscale.enable = false;
@@ -179,15 +178,6 @@
     nextcloud-client
     inotify-tools
     _0xproto
-
-    (pkgs.catppuccin-sddm.override {
-      flavor = "macchiato";
-      accent = "peach";
-      font = "0xProto Nerd Font";
-      fontSize = "9";
-      background = "${./wallpapers/sddm-background.jpg}";
-      loginBackground = true;
-    })
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -266,19 +256,11 @@
     package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
 
-  # Variables d'environnement pour NVIDIA + Wayland
-  environment.sessionVariables = {
-    # NVIDIA Wayland
-    LIBVA_DRIVER_NAME = "nvidia";
-    GBM_BACKEND = "nvidia-drm";
-    __GLX_VENDOR_LIBRARY_NAME = "nvidia";
-
-    # Wayland fixes
-    WLR_NO_HARDWARE_CURSORS = "1";
-
-    # XWayland
-    NIXOS_OZONE_WL = "1";
-  };
+  # NOTE: Les variables NVIDIA/Wayland (LIBVA_DRIVER_NAME, GBM_BACKEND,
+  # __GLX_VENDOR_LIBRARY_NAME, WLR_NO_HARDWARE_CURSORS, NIXOS_OZONE_WL)
+  # sont scopées à Hyprland dans hyprland-conf.nix (settings.env).
+  # Ne PAS les remettre en global ici : WLR_* et GBM_BACKEND cassent
+  # l'init de KWin (cannot open display) en session Plasma.
 
   hardware.bluetooth = {
     enable = true;
