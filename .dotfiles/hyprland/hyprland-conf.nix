@@ -332,7 +332,7 @@
         "$mainMod SHIFT, S, movetoworkspace, special:magic"
 
         # System controls
-        "$mainMod, L, exec, hyprlock"
+        "$mainMod, L, exec, qs ipc call lock lock"
         "$mainMod, SPACE, exec, hyprctl switchxkblayout at-translated-set-2-keyboard next"
       ];
 

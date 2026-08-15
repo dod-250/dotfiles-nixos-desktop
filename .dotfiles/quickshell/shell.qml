@@ -90,6 +90,7 @@ ShellRoot {
     NotifCenter {}
     Calendar {}
     WallpaperPicker {}
+    Lock {}
     SystemPopup {
         id: sysPopup
         visible: sysPopupVisible

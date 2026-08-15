@@ -36,6 +36,7 @@
     calcurse
     easyeffects
     lunar-client
+    jq
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage

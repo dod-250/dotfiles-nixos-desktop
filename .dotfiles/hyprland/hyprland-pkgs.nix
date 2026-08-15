@@ -8,7 +8,6 @@
   home.packages = with pkgs; [
     # === Hyprland ecosystem ===
     hyprpaper          # Wallpaper daemon
-    hyprlock           # Screen locker
     hypridle           # Idle daemon
     hyprpicker         # Color picker
 
