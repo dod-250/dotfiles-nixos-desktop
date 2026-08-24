@@ -16,6 +16,7 @@ Scope {
 
     function lock() {
         if (sessionLock.locked) return
+        root.enteredPassword = ""
         sessionLock.locked = true
         pam.start()
     }
@@ -28,6 +29,7 @@ Scope {
             if (result === PamResult.Success) {
                 root.unlocking = false
                 root.showError = false
+                root.enteredPassword = ""
                 sessionLock.locked = false
             } else {
                 root.enteredPassword = ""
